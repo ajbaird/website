@@ -1,30 +1,29 @@
 ---
-title: "A Whole-Body Mathematical Model of Sepsis Progression and Treatment Designed in the BioGears Physiology Engine"
+title: "Numerical study of scaling effects in peristalsis and dynamic suction pumping"
 authors:
 - admin
-- Matthew McDaniel
-- Steven A. White
-- Jonathan M. Keller
+- Tiffany King
+- Laura A. Miller
 date: "2019-10-19"
-doi: "https://doi.org/10.3389/fphys.2019.01321"
+doi: "https://doi.org/10.1090/conm/628/12543"
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2017-01-01T00:00:00Z"
+publishDate: "2014-01-01T00:00:00Z"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
-publication_types: ["2"]
+publication_types: ["6"]
 
 # Publication name and optional abbreviated publication name.
-publication: A Whole-Body Mathematical Model of Sepsis Progression and Treatment Designed in the BioGears Physiology Engine
+publication: Numerical study of scaling effects in peristalsis and dynamic suction pumping
 publication_short: 
 
-abstract: Sepsis is a debilitating condition associated with a high mortality rate that greatly strains hospital resources. Though advances have been made in improving sepsis diagnosis and treatment, our understanding of the disease is far from complete. Mathematical modeling of sepsis has the potential to explore underlying biological mechanisms and patient phenotypes that contribute to variability in septic patient outcomes. We developed a comprehensive, whole-body mathematical model of sepsis pathophysiology using the BioGears Engine, a robust open-source virtual human modeling project. We describe the development of a sepsis model and the physiologic response within the BioGears framework. We then define and simulate scenarios that compare sepsis treatment regimens. As such, we demonstrate the utility of this model as a tool to augment sepsis research and as a training platform to educate medical staff.
+abstract: Flow generated from peristalsis and dynamic suction pumping is examined using numerical simulations. Previous research has shown dynamic suction pumping to be bidirectional. This change in direction is dependent upon pumping frequency, the position of the actuation point, and several other parameters. This paper investigates the direction and magnitude of flow as a function of the Womersley number and the diameter to length ratio of the flexible portion of the tube. The diameter to length ratio has a significant effect on the overall net flow rate and direction. This type of sensitivity is not seen in peristalsis where the average net flow is determined by contraction wave speed. Variations in Womersley number are used to determine at what scales peristalsis and valveless suction pumping are effective.
 
 # Summary. An optional shortened abstract.
-summary: Development of a sepsis model and the physiologic response within the BioGears engine framework.
+summary: Computational investigation into pumping mechanisms efficacy for differnet scaling parameters.
 
 tags:
 - Source Themes
@@ -32,8 +31,8 @@ featured: true
 
 links:
 - name: Custom Link
-  url: https://www.frontiersin.org/articles/10.3389/fphys.2019.01321/full
-url_pdf: https://www.frontiersin.org/articles/10.3389/fphys.2019.01321/pdf
+  url: https://bookstore.ams.org/conm-628
+url_pdf: 
 url_code: '#'
 url_dataset: '#'
 url_poster: '#'

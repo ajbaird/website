@@ -24,6 +24,8 @@ interests:
 - Dynamical systems, biological models
 - Computational mathamtics
 - Fluid-structure interactions
+- Pharmacology modeling (PKPD)
+- Mathematical physiology
 
 education:
   courses:
@@ -50,9 +52,9 @@ social:
   link: https://github.com/ajbaird
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# - icon: cv
-#   icon_pack: ai
-#   link: files/cv.pdf
+#  - icon: cv
+#    icon_pack: ai
+#    link: static/files/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
@@ -68,4 +70,3 @@ My research focuses on mathematical modeling of biological systems, specifically
 
 My doctoral work focused on fully coupled fluid-structure interactions in modeling the invertebrate valveless tubular heart and the integration of a cardiac muscle cell model. I spent a year at Duke University as a visiting professor studying re-absorption mechanisms of the kidney and blood cell  aggregation and  de-aggregation in  the  capillaries due to peristaltic  pumping  mechanisms.  
 
-I've taught multiple university-level academic courses focusing on partial and ordinary differential equations and dynamical systems.  
