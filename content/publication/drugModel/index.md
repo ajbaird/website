@@ -1,12 +1,12 @@
 ---
-title: "A Whole-Body Mathematical Model of Sepsis Progression and Treatment Designed in the BioGears Physiology Engine"
+title: "Open Source Pharmacokinetic/Pharmacodynamic Framework: Tutorial on the BioGears Engine"
 authors:
-- admin
 - Matthew McDaniel
 - Steven A. White
 - Jonathan M. Keller
-date: "2019-10-19"
-doi: "https://doi.org/10.3389/fphys.2019.01321"
+- admin
+date: "2018-11-08"
+doi: " https://doi.org/10.1002/psp4.12371"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2017-01-01T00:00:00Z"
@@ -18,13 +18,13 @@ publishDate: "2017-01-01T00:00:00Z"
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: A Whole-Body Mathematical Model of Sepsis Progression and Treatment Designed in the BioGears Physiology Engine
+publication: "Open Source Pharmacokinetic/Pharmacodynamic Framework: Tutorial on the BioGears Engine"
 publication_short: 
 
-abstract: Sepsis is a debilitating condition associated with a high mortality rate that greatly strains hospital resources. Though advances have been made in improving sepsis diagnosis and treatment, our understanding of the disease is far from complete. Mathematical modeling of sepsis has the potential to explore underlying biological mechanisms and patient phenotypes that contribute to variability in septic patient outcomes. We developed a comprehensive, whole-body mathematical model of sepsis pathophysiology using the BioGears Engine, a robust open-source virtual human modeling project. We describe the development of a sepsis model and the physiologic response within the BioGears framework. We then define and simulate scenarios that compare sepsis treatment regimens. As such, we demonstrate the utility of this model as a tool to augment sepsis research and as a training platform to educate medical staff.
+abstract: BioGears is an open‐source, lumped parameter, full‐body human physiology engine. Its purpose is to provide realistic and comprehensive simulations for medical training, research, and education. BioGears incorporates a physiologically based pharmacokinetic/pharmacodynamic (PK/PD) model that is designed to be applicable to a diversity of drug classes and patients and is extensible to future drugs. In addition, BioGears also supports drug interactions with various patient insults and interventions allowing for a realistic research framework and accurate dose‐patient responses. This tutorial will demonstrate how the generic BioGears PK/PD model can be extended to a new substance for prediction of drug administration outcomes.
 
 # Summary. An optional shortened abstract.
-summary: Development of a sepsis model and the physiologic response within the BioGears engine framework.
+summary: Overview of the BioGears pharmacology (PKPD) modeling framework with a tutorial on adding new a new drug to the library.
 
 tags:
 - Source Themes
@@ -32,8 +32,8 @@ featured: true
 
 links:
 - name: Custom Link
-  url: https://www.frontiersin.org/articles/10.3389/fphys.2019.01321/full
-url_pdf: https://www.frontiersin.org/articles/10.3389/fphys.2019.01321/pdf
+  url: https://ascpt.onlinelibrary.wiley.com/doi/abs/10.1002/psp4.12371%4010.1002/%28ISSN%292163-8306.MethodsandSoftware
+url_pdf: https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12371%4010.1002/%28ISSN%292163-8306.MethodsandSoftware
 url_code: '#'
 url_dataset: '#'
 url_poster: '#'
