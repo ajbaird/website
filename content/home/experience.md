@@ -3,7 +3,7 @@
 widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 40  # Order that this section will appear.
+weight = 90  # Order that this section will appear.
 
 title = "Experience"
 subtitle = ""
@@ -28,9 +28,9 @@ date_format = "Jan 2006"
   Experience includes:
   
   * BioGears Principal Investigator
-  * Code review, and validaiton
+  * Code review, and validation
   * Deploying releases and community outreach
-  * Proposal writing and new funding aquisition
+  * Proposal writing and new funding acquisition
   """
 
 [[experience]]
@@ -64,7 +64,7 @@ date_format = "Jan 2006"
   * Altering high-fidelity Fortran90 1D model
   * Presented at Experimental Biology 2015 on venous pressure changes on filtration mechanism
   * Fluid-structure interaction model studying forces on red blood cells during peristaltic pumping
-  * Taught 2 courses will full duties and reponsibilities
+  * Taught 2 courses will full duties and responsibilities
   """
 
   [[experience]]
@@ -76,9 +76,9 @@ date_format = "Jan 2006"
   date_end = "2014-08-01"
   description = """Experience included:
   
-  * Immersed boundary method studying valveless pumpin mechanisms 
+  * Immersed boundary method studying valveless pumping mechanisms 
   * Developed heart muscle cell boundary model
   * Published and presented many conferences including: IEEE, SIAM, and SICB
-  * Taught 2 courses will full duties and reponsibilities
+  * Taught 2 courses will full duties and responsibility's
   """
 +++

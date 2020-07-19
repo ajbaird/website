@@ -32,14 +32,14 @@ featured: false
 links:
 - name: Link
   url: https://academic.oup.com/icb/article/55/5/901/607419
-url_pdf: ''
-url_code: '#'
-url_dataset: '#'
-url_poster: '#'
-url_project: ''
-url_slides: ''
-url_source: '#'
-url_video: '#'
+url_pdf:
+url_code: 
+url_dataset: 
+url_poster: 
+url_project:
+url_slides:
+url_source: 
+url_video: 
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
@@ -54,7 +54,6 @@ image:
 #   E.g. `internal-project` references `content/project/internal-project/index.md`.
 #   Otherwise, set `projects: []`.
 projects:
-- internal-project
 
 # Slides (optional).
 #   Associate this publication with Markdown slides.

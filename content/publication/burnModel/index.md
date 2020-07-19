@@ -25,20 +25,19 @@ abstract: We have created a model of systemic burn pathophysiology by incorporat
 summary: Burn physiology model and associated treatment protocols are detailed.
 
 tags:
-- Source Themes
 featured: true
 
 links:
 - name: Article Link
   url: https://ieeexplore.ieee.org/abstract/document/8857686
 url_pdf: https://www.frontiersin.org/articles/10.3389/fphys.2019.01321/pdf
-url_code: '#'
-url_dataset: '#'
-url_poster: '#'
-url_project: ''
-url_slides: ''
-url_source: '#'
-url_video: '#'
+url_code: 
+url_dataset: 
+url_poster: 
+url_project: 
+url_slides: 
+url_source: 
+url_video: 
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 

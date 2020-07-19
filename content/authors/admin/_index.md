@@ -22,7 +22,7 @@ bio: My interests include mathematical biology, pharmacological modeling, fluid-
 
 interests:
 - Dynamical systems, biological models
-- Computational mathamtics
+- Computational mathematics
 - Fluid-structure interactions
 - Pharmacology modeling (PKPD)
 - Mathematical physiology
@@ -43,7 +43,7 @@ education:
 social:
 - icon: envelope
   icon_pack: fas
-  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
+  link: 'mailto:ajbaird86@gmail.com'  # For a direct email link, use "mailto:test@example.org".
 - icon: google-scholar
   icon_pack: ai
   link: https://scholar.google.com/citations?user=mTOarj4AAAAJ&hl=en
@@ -61,9 +61,9 @@ email: ""
 
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
-user_groups:
-- Researchers
-- Visitors
+#user_groups:
+#- Researchers
+#- Visitors
 ---
 
 My research focuses on mathematical modeling of biological systems, specifically fluid-structure interaction, mathematical models in physiology, and dynamical system applications. At ARA, I am the principal investigator of the BioGears project, the Virtual Patient (BurnCare) project, and the BioGears follow-on effort. 

@@ -34,17 +34,17 @@ links:
 - name: Custom Link
   url: https://ascpt.onlinelibrary.wiley.com/doi/abs/10.1002/psp4.12371%4010.1002/%28ISSN%292163-8306.MethodsandSoftware
 url_pdf: https://ascpt.onlinelibrary.wiley.com/doi/epdf/10.1002/psp4.12371%4010.1002/%28ISSN%292163-8306.MethodsandSoftware
-url_code: '#'
-url_dataset: '#'
-url_poster: '#'
-url_project: ''
-url_slides: ''
-url_source: '#'
-url_video: '#'
+url_code: 
+url_dataset: 
+url_poster: 
+url_project:
+url_slides:
+url_source: 
+url_video: 
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
-image:
+image: 
   caption: ''
   focal_point: ""
   preview_only: false
@@ -65,13 +65,4 @@ projects:
 slides: example
 ---
 
-{{% alert note %}}
-Click the *Cite* button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-{{% /alert %}}
-
-{{% alert note %}}
-Click the *Slides* button above to demo Academic's Markdown slides feature.
-{{% /alert %}}
-
-Supplementary notes can be added here, including [code and math](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
 

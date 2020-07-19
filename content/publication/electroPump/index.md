@@ -32,14 +32,14 @@ featured: true
 links:
 - name: Article Link
   url: https://link.springer.com/article/10.1007/s13160-015-0195-3
-url_pdf: '#'
-url_code: '#'
-url_dataset: '#'
-url_poster: '#'
-url_project: ''
-url_slides: ''
-url_source: '#'
-url_video: '#'
+url_pdf: 
+url_code: 
+url_dataset: 
+url_poster: 
+url_project:
+url_slides:
+url_source: 
+url_video: 
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 

@@ -23,7 +23,7 @@ publication_short:
 abstract: Flow generated from peristalsis and dynamic suction pumping is examined using numerical simulations. Previous research has shown dynamic suction pumping to be bidirectional. This change in direction is dependent upon pumping frequency, the position of the actuation point, and several other parameters. This paper investigates the direction and magnitude of flow as a function of the Womersley number and the diameter to length ratio of the flexible portion of the tube. The diameter to length ratio has a significant effect on the overall net flow rate and direction. This type of sensitivity is not seen in peristalsis where the average net flow is determined by contraction wave speed. Variations in Womersley number are used to determine at what scales peristalsis and valveless suction pumping are effective.
 
 # Summary. An optional shortened abstract.
-summary: Computational investigation into pumping mechanisms efficacy for differnet scaling parameters.
+summary: Computational investigation into pumping mechanisms efficacy for different scaling parameters.
 
 tags:
 - Source Themes
@@ -33,13 +33,13 @@ links:
 - name: Custom Link
   url: https://bookstore.ams.org/conm-628
 url_pdf: 
-url_code: '#'
-url_dataset: '#'
-url_poster: '#'
-url_project: ''
-url_slides: ''
-url_source: '#'
-url_video: '#'
+url_code: 
+url_dataset: 
+url_poster: 
+url_project:
+url_slides:
+url_source: 
+url_video: 
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
@@ -64,13 +64,4 @@ projects:
 slides: example
 ---
 
-{{% alert note %}}
-Click the *Cite* button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-{{% /alert %}}
-
-{{% alert note %}}
-Click the *Slides* button above to demo Academic's Markdown slides feature.
-{{% /alert %}}
-
-Supplementary notes can be added here, including [code and math](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
 
