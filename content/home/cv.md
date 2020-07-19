@@ -69,4 +69,4 @@ subtitle = ""
 
 
 +++
- My CV is available in [HTML](cv/) or [PDF](cv/cv.pdf) form.
+CV available as a [PDF](cv/cv.pdf).
