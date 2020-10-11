@@ -69,4 +69,4 @@ subtitle = ""
 
 
 +++
-CV available as a [PDF](cv/cv.pdf).
+CV available as a [PDF](cv/resume.pdf).

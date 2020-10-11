@@ -26,6 +26,7 @@ interests:
 - Fluid-structure interactions
 - Pharmacology modeling (PKPD)
 - Mathematical physiology
+- Systems biology computational modeling
 
 education:
   courses:

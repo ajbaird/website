@@ -1,8 +1,8 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "Building and running BioGears on a MacOS"
-subtitle: "We will complete a mac build step by step and run a scenario file"
+title: "Hemorrhage Treatment HowTo"
+subtitle: "Create a program that monitors patient vitals during hemorrhage"
 summary: ""
 authors: [Austin Baird]
 tags: []
@@ -27,14 +27,14 @@ image:
 #   Otherwise, set `projects = []`.
 projects: ["BioGears"]
 ---
-BioGears on a Mac
+Leveraging BioGears libraries to write your own HowTo
 ==================
 
-These instructions will mostly be taken from the following [link](https://github.com/BioGearsEngine/core/wiki/MacOS-10.13-llvm-9.1-x86_64-apple-darwin17).
+We have BioGears built and ready to go but the question is, now what? What can we do with BioGears, how powerful is it and what type of applications can be build with it? These are some of the questions we will address in this tutorial on developing your own application leveraging BioGears API tools in C++. 
 
-Cloning and Building
+Running a HowTo file
 -------------------
-To begin create a suitable directory where you'd like the code to reside. For this example, I'll be cloning and building BioGears in `~/BioGears/Core` directory. To perform all of this work we will be using brew package manager. To access brew, on the command line paste in the follow text `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+To start lets first just verify that we can, in fact, run one of the many HowTo files provided by BioGears when we clone the repository. If you followed, the first post on this site you should have built BioGears as well as all the HowTos. If you didn't complete that please refer back this that [post](https://austinbaird.dev/post/buildingbiogears/). To run a HowTo file simply execute the binaries in the proper directory.
 
 Once you have a directory and the package manager set up, navigate to that newly created directory through the command line and copy the clone [link](https://github.com/BioGearsEngine/core.git) on github. From this directory we will install all the dependencies needed to begin running and using BioGears. To proceed copy and past the following code (to install requirements)
 
@@ -86,14 +86,5 @@ To configure a build that generates an Xcode project, make a new build folder in
 After you configure the where the source code is and where the build files will be generated (top two lines) as seen in the image. Click the configure button and select Xcode from the generators list that will pop up. There should be no errors, if there are you might need to re-install some of the binaries. Next, click generate, there will be some red text but this step should still finish. Next, click open project and the project should be launched in Xcode. In the next image you can see the folder structure and the Cardiovascular.cpp file which houses all models associated with BioGears cardiovascular system.
 
 ![png](./xcodeProj.png)
-
-You might want to be able to build BioGears targets through the XCode UI. In that case simply configure a scheme. For this example click the scheme button in the top left page, the in the drop down select ALL_BUILD. This will build all the CMAKE targets that are defined. This is good if you want to begin to reference the HowTo files to start making your own application with BioGears! Once the scheme is configured just hit the play button to begin building the ALL_BUILD target. NOTE: there will be a LOT of warnings, but there shouldn't be any errors.
-
-![png](./xcodeBuild.png)
-
-To confirm that the build worked, there should be a newly generated buildxcode folder that was generated (this is different from the one that we had cmake generate, mostly to differentiate between the two build systems). From there confirm that `buildxcode/runtime` folder. This folder houses all the extra files that are needed for BioGears to run! Confirm that there is a bunch of stuff in this folder (mostly .xml and .config files). Then we can confirm that some of our other projects built, specifically we want to confirm that the HowTo files compiled. Navigate to the where all built binaries are stored. For me, building debug targets, they are located in `/Users/abaird/Development/BioGears/Core/core/buildxcode/outputs/Debug/bin`. Your bin should look like below for reference: 
-
-![png](./bin.png)
-
 
 If you have other issues while building, feel free to post a comment on the community pages ([link](https://github.com/BioGearsEngine/core/issues))!
