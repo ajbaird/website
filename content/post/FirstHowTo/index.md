@@ -56,6 +56,39 @@ Creating a new HowTo project
 -------------------
 Now if BioGears is cloned from github, we will now need to set our remote to a fork of the repository so that all the code we push is our own. Once we are happy with what we've created then you can always push back changes to be integrated into the master branch of core. To do this, reference this [link](https://gist.github.com/jagregory/710671). Once completed if you type `git remote -v` you should see your origin set to your fork branch and upstream is still set to the BioGears core repository. Now we you can rebase origin off the upstream repository in the future and submit pull requests back to upstream! 
 
-First step to creating a new project is to just copy the hemorrhage folder under `core/projects/howto/hemorrhage` This will pull all the existing files that we just ran and will be the basis for the work that we want to do. 
+First step to creating a new project is to just copy the hemorrhage folder under `core/projects/howto/hemorrhage` This will pull all the existing files that we just ran and will be the basis for the work that we want to do. To update the projects list in Xcode we need to re-configure and generate the project using CMAKE. The image below shows our new howto project titled hemorrhagetreatment. Generally, these projects are laid out as a main file that runs routines, you can see this structure of the project if you look at the files included from the hemorrhage howto.
+
+![png](./configuration.png)
+
+Creating a patient vitals logger
+------------------------------------
+Ultimately, we want to create a command line tool that lets us: 
+- display patient vitals 
+- give treatment to the patient
+- alert us to any patient events that may occur 
+
+To do this we will start with baby steps, first lets just make a program that lets us configure the patient bleed rate and location and displays patient vitals every 10 seconds. To begin, lets lean on the dynamic sepsis how to, that shows us how to create a command line utility with BioGears. To start the program we will first set up a simple cin to store the location and rate of the hemorrhage, in the example below we are restricting the user to a select number of locations and fixed units for the bleed rate. Fancier applications may want to expand these options. BioGears has a generic unit conversion engine built in and the supports numerous hemorrhage locations.
+
+```c++
+void HowToHemorrhageTreatment()
+{
+  // Create the engine and load the patient
+  std::unique_ptr<PhysiologyEngine> bg = CreateBioGearsEngine("HowToHemorrhageTreatment.log");
+  bg->GetLogger()->Info("HowToHemorrhageTreatment");
+    
+// Load patient
+  if (!bg->LoadState("./states/StandardMale@0s.xml")) {
+    bg->GetLogger()->Error("Could not load state, check the error");
+    return;
+  }
+
+  std::string hemorrageLocation;
+  int hemorrageRate;
+
+  std::cout << "Please type the location of the hemorrhage as: leftleg, spleen, or aorta. Followed by the rate of the bleed (assuming units of mL/min), ex. leftleg 150 " << std::endl;
+  std::cin >> hemorrageLocation >> hemorrageRate;
+  ```
+
+
 
 If you have other issues while building, feel free to post a comment on the community pages ([link](https://github.com/BioGearsEngine/core/issues))!
