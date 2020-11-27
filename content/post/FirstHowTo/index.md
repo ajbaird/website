@@ -67,28 +67,126 @@ Ultimately, we want to create a command line tool that lets us:
 - give treatment to the patient
 - alert us to any patient events that may occur 
 
-To do this we will start with baby steps, first lets just make a program that lets us configure the patient bleed rate and location and displays patient vitals every 10 seconds. To begin, lets lean on the dynamic sepsis how to, that shows us how to create a command line utility with BioGears. To start the program we will first set up a simple cin to store the location and rate of the hemorrhage, in the example below we are restricting the user to a select number of locations and fixed units for the bleed rate. Fancier applications may want to expand these options. BioGears has a generic unit conversion engine built in and the supports numerous hemorrhage locations.
+To do this we will start with baby steps, first lets just make a program that lets us configure the patient bleed rate and location and displays patient vitals every 10 seconds. To begin, lets lean on the dynamic sepsis and hemorrhage how tos. We start with creating the BioGears engine an loading in the patient state file: 
 
 ```c++
 void HowToHemorrhageTreatment()
 {
-  // Create the engine and load the patient
+   // Create the engine and load the patient
   std::unique_ptr<PhysiologyEngine> bg = CreateBioGearsEngine("HowToHemorrhageTreatment.log");
   bg->GetLogger()->Info("HowToHemorrhageTreatment");
+  bool simulation = true;
     
 // Load patient
   if (!bg->LoadState("./states/StandardMale@0s.xml")) {
     bg->GetLogger()->Error("Could not load state, check the error");
     return;
   }
+  ```
+Then we need to set all the data requests that we want to be logged to our .csv file we will create: 
 
+```c++
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("HeartRate", FrequencyUnit::Per_min);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("BloodVolume", VolumeUnit::mL);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("CardiacOutput", VolumePerTimeUnit::mL_Per_min);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("MeanArterialPressure", PressureUnit::mmHg);
+
+  bg->GetEngineTrack()->GetDataRequestManager().SetResultsFilename("HowToHemorrhageTreatment.csv");
+  ```
+For this application we will just be concerned with cardiovascular system outputs such as cardiac output and mean arterial pressure. See other how tos and scenarios for more examples of the types of data requests we may configure.
+
+No we will set up a simple cin to store the location and rate of the hemorrhage, in the example below we are restricting the user to a select number of locations and fixed units for the bleed rate. Fancier applications may want to expand these options. BioGears has a generic unit conversion engine built in and the supports numerous hemorrhage locations.
+
+```c++
   std::string hemorrageLocation;
   int hemorrageRate;
 
   std::cout << "Please type the location of the hemorrhage as: leftleg, spleen, or aorta. Followed by the rate of the bleed (assuming units of mL/min), ex. leftleg 150 " << std::endl;
   std::cin >> hemorrageLocation >> hemorrageRate;
+  //Process update to hemorrhage action
+  hem.SetCompartment(hemorrageLocation);
+  bg->ProcessAction(hem);
+  ```
+
+Now we will initialize some parameters we will use in this simulation, here we will create objects for vasopressin and saline and a few other variables used in the do case: 
+
+```c++
+  int action;
+  bool simulation = true;
+  double rate;
+  double concentration;
+  SESubstance* vas = bg->GetSubstanceManager().GetSubstance("Vasopressin");
+  SESubstanceBolus bolus(*vas);
+  SESubstanceCompound* saline = bg->GetSubstanceManager().GetCompound("Saline");
+  SESubstanceCompoundInfusion* salineInfusion = new SESubstanceCompoundInfusion(*saline);
+  salineInfusion->GetBagVolume().SetValue(500, VolumeUnit::mL);
   ```
 
 
+Now lets log some information to the command line for the user to interact with. We want to let them administer saline, administer a tourniquet, vasopressin, advance time for a few minutes, or log patient information, we will construct this tool as a do loop to continue logging:
 
-If you have other issues while building, feel free to post a comment on the community pages ([link](https://github.com/BioGearsEngine/core/issues))!
+```c++
+  do {
+    bg->GetLogger()->Info("Enter Integer for Action to Perform : \n\t[1] Status \n\t[2] IVFluids \n\t[3] tourniquet \n\t[4] Vasopressin Admin \n\t[5] Quit \n");
+    std::cin >> action;
+  ```
+
+Now this next block of code will enact actions that are initialized by the user, each case will correspond to a different action we want to allow the user to push to BioGears during runtime: 
+
+```c++
+do {
+    bg->AdvanceModelTime(1.0, TimeUnit::s);
+    bg->GetEngineTrack()->TrackData(bg->GetSimulationTime(TimeUnit::s));
+    bg->GetLogger()->Info("Enter Integer for Action to Perform : \n\t[1] Status \n\t[2] IVFluids \n\t[3] tourniquet \n\t[4] Vasopressin Admin \n\t[5] Advance time 2 min \n\t[6] Quit \n");
+    std::cin >> action;
+    switch (action) {
+    case 1:
+      bg->GetLogger()->Info("");
+      bg->GetLogger()->Info(std::stringstream() << "Simulation Time  : " << bg->GetSimulationTime(TimeUnit::min) << "min");
+      bg->GetLogger()->Info(std::stringstream() << "Blood Volume : " << bg->GetCardiovascularSystem()->GetBloodVolume(VolumeUnit::mL) << VolumeUnit::mL);
+      bg->GetLogger()->Info(std::stringstream() << "Mean Arterial Pressure : " << bg->GetCardiovascularSystem()->GetMeanArterialPressure(PressureUnit::mmHg) << PressureUnit::mmHg);
+      bg->GetLogger()->Info(std::stringstream() << "Heart Rate : " << bg->GetCardiovascularSystem()->GetHeartRate(FrequencyUnit::Per_min) << "bpm");
+      break;
+    case 2:
+      bg->GetLogger()->Info("Enter IV Fluids Rate in mL/min (bag volume is 500 mL), followed by ENTER : ");
+      std::cin >> rate;
+      saline->GetRate().SetValue(rate, VolumePerTimeUnit::mL_Per_min);
+      bg->ProcessAction(*saline);
+      break;
+    case 3:
+      bg->GetLogger()->Info("Administering tourniquet");
+      hem.GetInitialRate().SetValue(0, VolumePerTimeUnit::mL_Per_min);
+      break;
+    case 4:
+      bg->GetLogger()->Info("Enter a concentration in ug/mL (will be delivered by a 10 mL push intravesnously), followed by ENTER : ");
+      std::cin >> concentration;
+      bolus.GetConcentration().SetValue(concentration, MassPerVolumeUnit::ug_Per_mL);
+      bolus.GetDose().SetValue(10, VolumeUnit::mL);
+      bolus.SetAdminRoute(CDM::enumBolusAdministration::Intravenous);
+      break;
+    case 5:
+      bg->AdvanceModelTime(2.0, TimeUnit::min);
+      bg->GetEngineTrack()->TrackData(bg->GetSimulationTime(TimeUnit::s));
+      break;
+    case 6:
+      simulation = false;
+      break;
+      }
+    } while(simulation);
+  
+  bg->GetLogger()->Info("Finished");
+
+  ```
+
+If it is running correctly your console screen should look the like this 
+
+![png](./consol.png)
+
+
+
+To confirm that the simulation ran and logged the appropriate data, navigate to the runtime directory and make sure that the HowtoHemorrhageTreatment.log and HowtoHemorrhageTreatment.csv file are present. You can then use your favorite data analysis tool to plot the results you are interested in. 
+
+To see the full set of code developed for this tutorial, please see the [github page](https://github.com/ajbaird/core/tree/masterFork/projects/howto/HemorrhageTreatment/src)
+
+
+If you have other issues feel free to post a comment on the community pages ([link](https://github.com/BioGearsEngine/core/issues))!
