@@ -73,7 +73,8 @@ To do this we will start with baby steps, first lets just make a program that le
 void HowToHemorrhageTreatment()
 {
    // Create the engine and load the patient
-  std::unique_ptr<PhysiologyEngine> bg = CreateBioGearsEngine("HowToHemorrhageTreatment.log");
+  std::unique_ptr<PhysiologyEngine> bg = 
+          CreateBioGearsEngine("HowToHemorrhageTreatment.log");
   bg->GetLogger()->Info("HowToHemorrhageTreatment");
   bool simulation = true;
     
@@ -86,12 +87,17 @@ void HowToHemorrhageTreatment()
 Then we need to set all the data requests that we want to be logged to our .csv file we will create: 
 
 ```c++
-  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("HeartRate", FrequencyUnit::Per_min);
-  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("BloodVolume", VolumeUnit::mL);
-  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("CardiacOutput", VolumePerTimeUnit::mL_Per_min);
-  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().Set("MeanArterialPressure", PressureUnit::mmHg);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().
+  Set("HeartRate", FrequencyUnit::Per_min);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().
+  Set("BloodVolume", VolumeUnit::mL);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().
+  Set("CardiacOutput", VolumePerTimeUnit::mL_Per_min);
+  bg->GetEngineTrack()->GetDataRequestManager().CreatePhysiologyDataRequest().
+  Set("MeanArterialPressure", PressureUnit::mmHg);
 
-  bg->GetEngineTrack()->GetDataRequestManager().SetResultsFilename("HowToHemorrhageTreatment.csv");
+  bg->GetEngineTrack()->GetDataRequestManager().
+  SetResultsFilename("HowToHemorrhageTreatment.csv");
   ```
 For this application we will just be concerned with cardiovascular system outputs such as cardiac output and mean arterial pressure. See other how tos and scenarios for more examples of the types of data requests we may configure.
 
@@ -101,7 +107,9 @@ No we will set up a simple cin to store the location and rate of the hemorrhage,
   std::string hemorrageLocation;
   int hemorrageRate;
 
-  std::cout << "Please type the location of the hemorrhage as: leftleg, spleen, or aorta. Followed by the rate of the bleed (assuming units of mL/min), ex. leftleg 150 " << std::endl;
+  std::cout << "Please type the location of the hemorrhage as: leftleg, spleen, 
+  or aorta. Followed by the rate of the bleed (assuming units of mL/min), 
+  ex. leftleg 150 " << std::endl;
   std::cin >> hemorrageLocation >> hemorrageRate;
   //Process update to hemorrhage action
   hem.SetCompartment(hemorrageLocation);
@@ -118,7 +126,8 @@ Now we will initialize some parameters we will use in this simulation, here we w
   SESubstance* vas = bg->GetSubstanceManager().GetSubstance("Vasopressin");
   SESubstanceBolus bolus(*vas);
   SESubstanceCompound* saline = bg->GetSubstanceManager().GetCompound("Saline");
-  SESubstanceCompoundInfusion* salineInfusion = new SESubstanceCompoundInfusion(*saline);
+  SESubstanceCompoundInfusion* salineInfusion = 
+          new SESubstanceCompoundInfusion(*saline);
   salineInfusion->GetBagVolume().SetValue(500, VolumeUnit::mL);
   ```
 
@@ -127,7 +136,9 @@ Now lets log some information to the command line for the user to interact with.
 
 ```c++
   do {
-    bg->GetLogger()->Info("Enter Integer for Action to Perform : \n\t[1] Status \n\t[2] IVFluids \n\t[3] tourniquet \n\t[4] Vasopressin Admin \n\t[5] Quit \n");
+    bg->GetLogger()->Info("Enter Integer for Action to Perform : 
+    \n\t[1] Status \n\t[2] IVFluids \n\t[3] tourniquet 
+    \n\t[4] Vasopressin Admin \n\t[5] Quit \n");
     std::cin >> action;
   ```
 
@@ -137,18 +148,28 @@ Now this next block of code will enact actions that are initialized by the user,
 do {
     bg->AdvanceModelTime(1.0, TimeUnit::s);
     bg->GetEngineTrack()->TrackData(bg->GetSimulationTime(TimeUnit::s));
-    bg->GetLogger()->Info("Enter Integer for Action to Perform : \n\t[1] Status \n\t[2] IVFluids \n\t[3] tourniquet \n\t[4] Vasopressin Admin \n\t[5] Advance time 2 min \n\t[6] Quit \n");
+    bg->GetLogger()->Info("Enter Integer for Action to Perform : \n\t[1] Status 
+    \n\t[2] IVFluids \n\t[3] tourniquet \n\t[4] Vasopressin Admin 
+    \n\t[5] Advance time 2 min \n\t[6] Quit \n");
     std::cin >> action;
     switch (action) {
     case 1:
       bg->GetLogger()->Info("");
-      bg->GetLogger()->Info(std::stringstream() << "Simulation Time  : " << bg->GetSimulationTime(TimeUnit::min) << "min");
-      bg->GetLogger()->Info(std::stringstream() << "Blood Volume : " << bg->GetCardiovascularSystem()->GetBloodVolume(VolumeUnit::mL) << VolumeUnit::mL);
-      bg->GetLogger()->Info(std::stringstream() << "Mean Arterial Pressure : " << bg->GetCardiovascularSystem()->GetMeanArterialPressure(PressureUnit::mmHg) << PressureUnit::mmHg);
-      bg->GetLogger()->Info(std::stringstream() << "Heart Rate : " << bg->GetCardiovascularSystem()->GetHeartRate(FrequencyUnit::Per_min) << "bpm");
+      bg->GetLogger()->Info(std::stringstream() << "Simulation Time  : " 
+      << bg->GetSimulationTime(TimeUnit::min) << "min");
+      bg->GetLogger()->Info(std::stringstream() << "Blood Volume : " 
+      << bg->GetCardiovascularSystem()->GetBloodVolume(VolumeUnit::mL) 
+      << "mL";
+      bg->GetLogger()->Info(std::stringstream() << "Mean Arterial Pressure : " 
+      << bg->GetCardiovascularSystem()->
+      GetMeanArterialPressure(PressureUnit::mmHg) << "mmHg";
+      bg->GetLogger()->Info(std::stringstream() << "Heart Rate : " 
+      << bg->GetCardiovascularSystem()->GetHeartRate(FrequencyUnit::Per_min) 
+      << "bpm");
       break;
     case 2:
-      bg->GetLogger()->Info("Enter IV Fluids Rate in mL/min (bag volume is 500 mL), followed by ENTER : ");
+      bg->GetLogger()->Info("Enter IV Fluids Rate in mL/min 
+      (bag volume is 500 mL), followed by ENTER : ");
       std::cin >> rate;
       saline->GetRate().SetValue(rate, VolumePerTimeUnit::mL_Per_min);
       bg->ProcessAction(*saline);
@@ -158,9 +179,11 @@ do {
       hem.GetInitialRate().SetValue(0, VolumePerTimeUnit::mL_Per_min);
       break;
     case 4:
-      bg->GetLogger()->Info("Enter a concentration in ug/mL (will be delivered by a 10 mL push intravesnously), followed by ENTER : ");
+      bg->GetLogger()->Info("Enter a concentration in ug/mL 
+      (will be delivered by a 10 mL push intravesnously), followed by ENTER : ");
       std::cin >> concentration;
-      bolus.GetConcentration().SetValue(concentration, MassPerVolumeUnit::ug_Per_mL);
+      bolus.GetConcentration().SetValue(concentration, 
+      MassPerVolumeUnit::ug_Per_mL);
       bolus.GetDose().SetValue(10, VolumeUnit::mL);
       bolus.SetAdminRoute(CDM::enumBolusAdministration::Intravenous);
       break;
