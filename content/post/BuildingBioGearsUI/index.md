@@ -45,16 +45,16 @@ From the root of where you cloned the UI, for me this is `BioGears/ui`, then in 
 
 This command will automatically clone the latest master commit from the BioGears core project. Once BioGears has been pulled from core, we need to build BioGears 
 
-'''
+```
 mkdir build-biogears
 cd build-biogears
 cmake ../projectslibbiogears -DCMAKE_INSTALL_PREFIX=${PWD}../build-gui/usr 
 cmake --build . -config Release -target install 
-'''
+```
 
 This command will install to the usr folder within the user interface, all build files will be in the build-biogears folder. 
 
-![png](./buildBiogearsExtern)
+![png](./command.png)
 
 We also need to make sure that Qt is installed on our system. I will not cover cloning and building Qt but it is VERY important to make sure that you download and install Qt version 5.12, otherwise the BioGears UI will not work. 
 

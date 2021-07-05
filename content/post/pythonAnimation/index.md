@@ -41,7 +41,6 @@ Command Line Arguments
 -------------------
 
 
-![png](./runHem.png)
 
 
 Check Paths and Verify Data
@@ -56,10 +55,8 @@ Animating the Data
 
 If it is running correctly your console screen should look the like this 
 
-![png](./consol.png)
 
 
 To see the full set of code developed for this tutorial, please see the [github page](https://github.com/ajbaird/TBISimulator/blob/master/animateData.py)
 
 
-If you have other issues feel free to post a comment on the community pages ([link](https://github.com/BioGearsEngine/core/issues))!
